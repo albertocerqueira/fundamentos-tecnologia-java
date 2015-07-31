@@ -26,7 +26,7 @@ public class App {
 			System.out.println("Data Formatada " + dataFormatada);
 		} catch (ParseException e) {
 			//Try Catch Obrigatario
-			System.out.println("Erro na conversão.");
+			System.out.println("Erro na convers\u00e3o.");
 		}
 	}
 }

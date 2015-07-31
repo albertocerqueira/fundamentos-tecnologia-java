@@ -40,7 +40,7 @@ public class App {
 		iterador = listaCliente.iterator();
 		
 		System.out.println("---- ORDENADO POR NOME ----");
-		while (iterador.hasNext()){
+		while (iterador.hasNext()) {
 			Cliente cliente=iterador.next();
 			System.out.println("ID " + cliente.getIdentificacao() + " " + cliente);
 		}

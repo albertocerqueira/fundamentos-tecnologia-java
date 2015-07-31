@@ -27,7 +27,7 @@ public class Cliente implements Comparable<Cliente> {
 		this.identificacao = identificacao;
 	}
 
-	public String toString(){
+	public String toString() {
 		return nome;
 	}
 	
