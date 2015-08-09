@@ -1,0 +1,354 @@
+Respostas da Atividade 06:
+
+I:
+public class Aviao extends Thread {
+    
+    private String nome;
+    
+    public Aviao(String nome, Aeroporto aeroporto){
+        this.nome = nome;
+    }
+    
+    public void decolar(int numero){
+        Aeroporto.aguardarPistaDisponivel(nome);
+        System.out.println("Decolagem de numero " + numero + " Avião: " + nome);
+    }
+    
+    public void voar() throws InterruptedException{
+        Thread.sleep(2000);
+    }
+    
+    public void aterrizar(){
+        Aeroporto.aguardarPistaDisponivel(nome);
+        System.out.println("Pousando Avião:" + nome);
+    }
+    
+    @Override
+    public void run() {
+        int qtdVoo = 0;
+        while(true){
+            qtdVoo++;
+            decolar(qtdVoo);
+            try {
+                voar();
+            } catch (InterruptedException ex) {
+                System.out.println("Erro no voo do avião.");
+            }
+            aterrizar();
+        }
+    }
+
+    /**
+     * @return the nome
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * @param nome the nome to set
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+}
+
+public class Aeroporto extends Thread {
+    
+    private String nome;
+    private static Boolean statusPista = false;
+    
+    public Aeroporto(String nome){
+        this.nome = nome;
+    }
+ 
+    public static void aguardarPistaDisponivel(String nomeAviao){
+        while(!statusPista){
+            System.out.println("Aguardando limpeza da pista. Para Utilização do Avião: " + nomeAviao);
+        }
+    }
+    
+    public static void alterarEstadoPista(){
+        if(!statusPista){
+            statusPista = Boolean.TRUE;
+        }else{
+            statusPista = Boolean.FALSE;
+        }
+    }
+    
+    @Override
+    public void run() {
+        while(true){
+            alterarEstadoPista();
+            System.out.println("Aeroporto limpando pista...");
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException ex) {
+                System.out.println("Erro na limpeza da pista.");
+            }
+        }
+    }
+
+    /**
+     * @return the statusPista
+     */
+    public Boolean getStatusPista() {
+        return statusPista;
+    }
+
+    /**
+     * @param statusPista the statusPista to set
+     */
+    public void setStatusPista(Boolean statusPista) {
+        this.statusPista = statusPista;
+    }
+
+    /**
+     * @return the nome
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * @param nome the nome to set
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+}
+
+public class Main01 {
+ 
+    public static void main(String[] args) {
+        Aeroporto aeroporto1 = new Aeroporto("Internacional de Guarulhos");
+        Aeroporto aeroporto2 = new Aeroporto("Aeroporto de Cumbica");
+        
+        Aviao aviao1 = new Aviao("TAM 123", aeroporto1);
+        Aviao aviao2 = new Aviao("OLE 111", aeroporto1);
+        Aviao aviao3 = new Aviao("LINHA 222", aeroporto1);
+        
+        aeroporto1.start();
+        aviao1.start();
+        aviao2.start();
+        aviao3.start();
+    }
+}
+
+II:
+public class Funcionario {
+
+    private String nome;
+    private Integer idade;
+    private Collection<String> habilidades = new ArrayList<String>();
+    private Collection<String> nomeFilhos = new ArrayList<String>();
+    
+    public Funcionario(String nome, Integer idade){
+        this.nome = nome;
+        this.idade = idade;
+    }
+
+    /**
+     * @return the nome
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * @param nome the nome to set
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    /**
+     * @return the idade
+     */
+    public Integer getIdade() {
+        return idade;
+    }
+
+    /**
+     * @param idade the idade to set
+     */
+    public void setIdade(Integer idade) {
+        this.idade = idade;
+    }
+
+    /**
+     * @return the habilidades
+     */
+    public Collection<String> getHabilidades() {
+        return habilidades;
+    }
+
+    /**
+     * @param habilidades the habilidades to set
+     */
+    public void setHabilidades(Collection<String> habilidades) {
+        this.habilidades = habilidades;
+    }
+
+    /**
+     * @return the nomeFilhos
+     */
+    public Collection<String> getNomeFilhos() {
+        return nomeFilhos;
+    }
+
+    /**
+     * @param nomeFilhos the nomeFilhos to set
+     */
+    public void setNomeFilhos(Collection<String> nomeFilhos) {
+        this.nomeFilhos = nomeFilhos;
+    }
+    
+    public void addHabilidade(String habilidade){
+        this.habilidades.add(habilidade);
+    }
+    
+    public void addNomeFilho(String nomeFilho){
+        this.nomeFilhos.add(nomeFilho);
+    }
+}
+
+public class Main02 {
+
+    public static void main(String[] args) {
+        Funcionario f01 = new Funcionario("João", 33);
+        f01.addHabilidade("JAVA");
+        f01.addHabilidade("Android");
+        f01.addHabilidade("Cobol");
+        f01.addHabilidade("C++");
+        f01.addHabilidade("C");
+        f01.addNomeFilho("Mario");
+        f01.addNomeFilho("Maria");
+        f01.addNomeFilho("Bob");
+        
+        
+        Funcionario f02 = new Funcionario("José", 33);
+        f02.addHabilidade("JAVA");
+        f02.addHabilidade("Android");
+        f02.addHabilidade("Cobol");
+        f02.addHabilidade("C++");
+        f02.addHabilidade("C");
+        f02.addHabilidade("HTML");
+        f02.addHabilidade("javascript");
+        f02.addHabilidade("CSS");
+        f02.addNomeFilho("Mario");
+        f02.addNomeFilho("Maria");
+        f02.addNomeFilho("Bob");
+        f02.addNomeFilho("Fidalgo");
+        f02.addNomeFilho("Jonas");
+        
+        ArrayList<Funcionario> funcionarios =  new ArrayList<Funcionario>();
+        funcionarios.add(f01);
+        funcionarios.add(f02);
+        for(Funcionario f : funcionarios){
+            System.out.println("----------------- Nome Funcionário -----------------");
+            System.out.println("----------------- " + f.getNome() + " -----------------");
+            System.out.println("----------------- Idade -----------------");
+            System.out.println("----------------- " + f.getIdade() + " -----------------");
+            System.out.println("----------------- Filhos -----------------");
+            for(String nomeFilho : f.getNomeFilhos()){
+                System.out.println("----------------- " + nomeFilho + " -----------------");
+            }
+            System.out.println("----------------- Habilidades -----------------");
+            for(String habilidade : f.getHabilidades()){
+                System.out.println("----------------- " + habilidade + " -----------------");
+            }
+            System.out.println("\n\n");
+        }
+    }
+}
+
+III:
+public enum Cores {
+
+    branco(21, "Branco"),
+    preto(22, "Preto"),
+    vermelho(23, "Vermelho"),
+    amarelo(24, "Amarelo"),
+    azul(25, "Azul");
+    
+    private String nome;
+    private int codigo;
+
+    Cores(int codigo, String nome) {
+        this.nome = nome;
+        this.codigo = codigo;
+    }
+
+    public static Enum get(int codigo){
+        if(codigo == 21){
+            return Cores.branco;
+        }else if(codigo == 22){
+            return Cores.preto;
+        }else if(codigo == 23){
+            return Cores.vermelho;
+        }else if(codigo == 24){
+            return Cores.amarelo;
+        }else if(codigo == 25){
+            return Cores.azul;
+        }else{
+            return null;
+        }
+    }
+    
+    public static Enum get(String nome){
+        if(nome.equalsIgnoreCase("Branco")){
+            return Cores.branco;
+        }else if(nome.equalsIgnoreCase("Preto")){
+            return Cores.preto;
+        }else if(nome.equalsIgnoreCase("Vermelho")){
+            return Cores.vermelho;
+        }else if(nome.equalsIgnoreCase("Amarelo")){
+            return Cores.amarelo;
+        }else if(nome.equalsIgnoreCase("Azul")){
+            return Cores.azul;
+        }else{
+            return null;
+        }
+    }
+    
+    /**
+     * @return the nome
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * @param nome the nome to set
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    /**
+     * @return the codigo
+     */
+    public int getCodigo() {
+        return codigo;
+    }
+
+    /**
+     * @param codigo the codigo to set
+     */
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+}
+
+public class Main03 {
+
+    public static void main(String[] args) {
+        for(Cores cor : Cores.values()){
+            System.out.println("Cor: " + cor.getNome() + " código " + cor.getCodigo());
+        }
+        System.out.println("-------------------GET Cor-------------------"); 
+        System.out.println("Cor: " + Cores.get(21));
+        System.out.println("Cor: " + Cores.get("Branco"));
+    }
+}

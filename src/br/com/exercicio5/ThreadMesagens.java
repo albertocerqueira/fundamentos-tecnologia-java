@@ -1,0 +1,115 @@
+package br.com.exercicio5;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class ThreadMesagens {
+	
+	public static String getMensagem(Integer posicao) {
+		return mensagens.get(posicao);
+	}
+
+	private static final Map<Integer, String> mensagens = new HashMap<Integer, String>();
+	static {
+		mensagens.put(1, "Mensagem 1");
+		mensagens.put(2, "Mensagem 2");
+		mensagens.put(3, "Mensagem 3");
+		mensagens.put(4, "Mensagem 4");
+		mensagens.put(5, "Mensagem 5");
+		mensagens.put(6, "Mensagem 6");
+		mensagens.put(7, "Mensagem 7");
+		mensagens.put(8, "Mensagem 8");
+		mensagens.put(9, "Mensagem 9");
+		mensagens.put(10, "Mensagem 10");
+		mensagens.put(11, "Mensagem 11");
+		mensagens.put(12, "Mensagem 12");
+		mensagens.put(13, "Mensagem 13");
+		mensagens.put(14, "Mensagem 14");
+		mensagens.put(15, "Mensagem 15");
+		mensagens.put(16, "Mensagem 16");
+		mensagens.put(17, "Mensagem 17");
+		mensagens.put(18, "Mensagem 18");
+		mensagens.put(19, "Mensagem 19");
+		mensagens.put(20, "Mensagem 20");
+		mensagens.put(21, "Mensagem 21");
+		mensagens.put(22, "Mensagem 22");
+		mensagens.put(23, "Mensagem 23");
+		mensagens.put(24, "Mensagem 24");
+		mensagens.put(25, "Mensagem 25");
+		mensagens.put(26, "Mensagem 26");
+		mensagens.put(27, "Mensagem 27");
+		mensagens.put(28, "Mensagem 28");
+		mensagens.put(29, "Mensagem 29");
+		mensagens.put(30, "Mensagem 30");
+		mensagens.put(31, "Mensagem 31");
+		mensagens.put(32, "Mensagem 32");
+		mensagens.put(33, "Mensagem 33");
+		mensagens.put(34, "Mensagem 34");
+		mensagens.put(35, "Mensagem 35");
+		mensagens.put(36, "Mensagem 36");
+		mensagens.put(37, "Mensagem 37");
+		mensagens.put(38, "Mensagem 38");
+		mensagens.put(39, "Mensagem 39");
+		mensagens.put(40, "Mensagem 40");
+		mensagens.put(41, "Mensagem 41");
+		mensagens.put(42, "Mensagem 42");
+		mensagens.put(43, "Mensagem 43");
+		mensagens.put(44, "Mensagem 44");
+		mensagens.put(45, "Mensagem 45");
+		mensagens.put(46, "Mensagem 46");
+		mensagens.put(47, "Mensagem 47");
+		mensagens.put(48, "Mensagem 48");
+		mensagens.put(49, "Mensagem 49");
+		mensagens.put(50, "Mensagem 50");
+		mensagens.put(51, "Mensagem 51");
+		mensagens.put(52, "Mensagem 52");
+		mensagens.put(53, "Mensagem 53");
+		mensagens.put(54, "Mensagem 54");
+		mensagens.put(55, "Mensagem 55");
+		mensagens.put(56, "Mensagem 56");
+		mensagens.put(57, "Mensagem 57");
+		mensagens.put(58, "Mensagem 58");
+		mensagens.put(59, "Mensagem 59");
+		mensagens.put(60, "Mensagem 60");
+		mensagens.put(61, "Mensagem 61");
+		mensagens.put(62, "Mensagem 62");
+		mensagens.put(63, "Mensagem 63");
+		mensagens.put(64, "Mensagem 64");
+		mensagens.put(65, "Mensagem 65");
+		mensagens.put(66, "Mensagem 66");
+		mensagens.put(67, "Mensagem 67");
+		mensagens.put(68, "Mensagem 68");
+		mensagens.put(69, "Mensagem 69");
+		mensagens.put(70, "Mensagem 70");
+		mensagens.put(71, "Mensagem 71");
+		mensagens.put(72, "Mensagem 72");
+		mensagens.put(73, "Mensagem 73");
+		mensagens.put(74, "Mensagem 74");
+		mensagens.put(75, "Mensagem 75");
+		mensagens.put(76, "Mensagem 76");
+		mensagens.put(77, "Mensagem 77");
+		mensagens.put(78, "Mensagem 78");
+		mensagens.put(79, "Mensagem 79");
+		mensagens.put(80, "Mensagem 80");
+		mensagens.put(81, "Mensagem 81");
+		mensagens.put(82, "Mensagem 82");
+		mensagens.put(83, "Mensagem 83");
+		mensagens.put(84, "Mensagem 84");
+		mensagens.put(85, "Mensagem 85");
+		mensagens.put(86, "Mensagem 86");
+		mensagens.put(87, "Mensagem 87");
+		mensagens.put(88, "Mensagem 88");
+		mensagens.put(89, "Mensagem 89");
+		mensagens.put(90, "Mensagem 90");
+		mensagens.put(91, "Mensagem 91");
+		mensagens.put(92, "Mensagem 92");
+		mensagens.put(93, "Mensagem 93");
+		mensagens.put(94, "Mensagem 94");
+		mensagens.put(95, "Mensagem 95");
+		mensagens.put(96, "Mensagem 96");
+		mensagens.put(97, "Mensagem 97");
+		mensagens.put(98, "Mensagem 98");
+		mensagens.put(99, "Mensagem 99");
+		mensagens.put(100, "Mensagem 100");
+	}
+}

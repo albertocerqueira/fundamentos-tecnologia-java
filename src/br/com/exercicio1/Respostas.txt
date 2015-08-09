@@ -1,0 +1,39 @@
+Respostas da Atividade 01:
+
+I - Exercício 01:
+Possui erro de sintaxe, precisa inserir ponto e virgula no final da linha do system.out.
+Trocar:
+System.out.println("Ola Mundo!")
+Para:
+System.out.println("Ola Mundo!");
+
+I - Exercício 02:
+Funciona perfeitamente.
+
+I - Exercício 03:
+Metodo main não possui caracteristicas validas para rodar a classe.
+-Não recebe parametro e possui visibilidade como private quando o certo seria public.
+
+I - Exercício 04:
+Metodo main não possui caracteristicas validas para rodar a classe.
+-Não recebe parametro e trata-se de um metodo estatico.
+
+III - Exercício 01:
+É possível perde a precisão no cálculo. 
+Ou seja na linha:
+a = a + b; //Esta incorreta, é necessário criar cascade para variável "a".
+
+III - Exercício 02:
+É possível perde a precisão no cálculo. 
+Ou seja na linha:
+a = a + b; //Esta incorreta, é necessário criar cascade para variável "a".
+
+III - Exercício 03:
+Funciona perfeitamente.
+
+III - Exercício 04:
+Funciona perfeitamente.
+
+III - Exercício 05:
+Funciona perfeitamente.
+

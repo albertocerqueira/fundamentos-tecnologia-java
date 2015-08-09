@@ -1,0 +1,401 @@
+Respostas da Atividade 05:
+
+I:
+public class CollectionsPessoas {
+
+    public static Collection<Pessoa> builderCollections(){
+        Collection<Pessoa> pessoas = new ArrayList<Pessoa>();
+        pessoas.add(new Pessoa("Alberto Cerqueira", 23, "M", "Wave Solutions"));
+        pessoas.add(new Pessoa("Larry Page", 40, "M", "Google"));
+        pessoas.add(new Pessoa("Sergey Brin", 40, "M", "Google"));
+        pessoas.add(new Pessoa("Mark Zuckerberg", 29, "M", "Facebook"));
+        pessoas.add(new Pessoa("Bill Gates", 57, "M", "Microsolf"));
+        
+        return pessoas;
+    }
+}
+
+public class Pessoa implements Comparable<Pessoa> {
+    
+    private String nome;
+    private Integer idade;
+    private String sexo;
+    private String empresa;
+    
+    public Pessoa(String nome, Integer idade, String sexo, String empresa){
+        this.nome = nome;
+        this.idade = idade;
+        this.sexo = sexo;
+        this.empresa = empresa;
+    }
+
+    /**
+     * @return the nome
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * @param nome the nome to set
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    /**
+     * @return the idade
+     */
+    public Integer getIdade() {
+        return idade;
+    }
+
+    /**
+     * @param idade the idade to set
+     */
+    public void setIdade(Integer idade) {
+        this.idade = idade;
+    }
+
+    /**
+     * @return the sexo
+     */
+    public String getSexo() {
+        return sexo;
+    }
+
+    /**
+     * @param sexo the sexo to set
+     */
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    /**
+     * @return the empresa
+     */
+    public String getEmpresa() {
+        return empresa;
+    }
+
+    /**
+     * @param empresa the empresa to set
+     */
+    public void setEmpresa(String empresa) {
+        this.empresa = empresa;
+    }
+    
+    @Override
+    public String toString(){
+        String _nome = stringBuilder(getNome()) + "|||";
+        String _idade = getIdade() + "    |||";
+        String _sexo = getSexo() + "    |||";
+        String _empresa = stringBuilder(getEmpresa()) + "|||";
+        return "|||" + _nome + _idade + _sexo + _empresa;
+    }
+    
+    public String stringBuilder(String value){
+        int tam = 17 - value.length();
+        StringBuilder builder = new StringBuilder(value);
+        for(int x=0; x<tam; x++){
+            builder.append(" ");
+        }
+        return builder.toString();
+    }
+    
+    @Override
+    public int compareTo(Pessoa pessoa){
+        return this.nome.compareTo(pessoa.getNome());
+    }
+    
+    public int compare(Pessoa pessoa1, Pessoa pessoa2){
+        return (-1) * pessoa1.getNome().compareTo(pessoa2.getNome());
+    }
+}
+
+a.
+public class Main01a {
+
+    public static void main(String[] args) {
+        System.out.println("|||Nome             |||Idade |||Sexo |||Empresa          |||");
+        for(Pessoa pessoa : CollectionsPessoas.builderCollections()){
+            System.out.println(pessoa);
+        }
+    }
+}
+
+b.
+public class Main01b {
+
+    public static void main(String[] args) {
+        List<Pessoa> pessoas = (List<Pessoa>) CollectionsPessoas.builderCollections();
+        Collections.sort(pessoas);
+        System.out.println("|||Nome             |||Idade |||Sexo |||Empresa          |||");
+        for(Pessoa pessoa : pessoas){
+            System.out.println(pessoa);
+        }
+    }
+}
+
+c.
+public class Main01c {
+
+    public static void main(String[] args) {
+        List<Pessoa> pessoas = (List<Pessoa>) CollectionsPessoas.builderCollections();
+        Collections.sort(pessoas, Collections.reverseOrder());
+        System.out.println("|||Nome             |||Idade |||Sexo |||Empresa          |||");
+        for(Pessoa pessoa : pessoas){
+            System.out.println(pessoa);
+        }
+    }
+}
+
+II:
+public class Main02 {
+
+    public static void main(String[] args) {
+        String mensagem = JOptionPane.showInputDialog("Informe a mensagem a ser CRIPTOGRAFADA: ");
+        FileWriter arqCriptografada;
+        String mensagemCriptografada = criptografar(mensagem);
+        try {
+            arqCriptografada = new FileWriter("mensagemCodificada.txt");
+            PrintWriter gravarArq = new PrintWriter(arqCriptografada);
+            gravarArq.printf(mensagemCriptografada);
+            arqCriptografada.close();
+        } catch (IOException ex) {
+            System.out.println("Erro...");
+        }
+
+        System.out.println("Mensagem Criptografada: " + mensagemCriptografada);
+        
+        FileWriter arqDescriptografada;
+        String mensagemDescriptografada = descriptografar(mensagemCriptografada);
+        try {
+            arqDescriptografada = new FileWriter("mensagemDescodificada.txt");
+            PrintWriter gravarArq = new PrintWriter(arqDescriptografada);
+            gravarArq.printf(mensagemDescriptografada);
+            arqDescriptografada.close();
+        } catch (IOException ex) {
+            System.out.println("Erro...");
+        }
+        
+        System.out.println("Mensagem Descriptografada: " + mensagemDescriptografada);
+    }
+
+    public static String descriptografar(String mensagem) {
+        StringBuilder textoCifrado = new StringBuilder();
+        int tamanhoTexto = mensagem.length();
+
+        for (int c = 0; c < tamanhoTexto; c++) {
+            int letraDecifradaASCII = ((int) mensagem.charAt(c)) - 1;
+            while (letraDecifradaASCII < 32) {
+                letraDecifradaASCII += 94;
+            }
+            textoCifrado.append(((char) letraDecifradaASCII));
+        }
+        return textoCifrado.toString();
+    }
+
+    public static String criptografar(String mensagem) {
+        StringBuilder textoCifrado = new StringBuilder();
+        int tamanhoTexto = mensagem.length();
+
+        for (int c = 0; c < tamanhoTexto; c++) {
+            int letraCifradaASCII = ((int) mensagem.charAt(c)) + 1;
+            while (letraCifradaASCII > 126) {
+                letraCifradaASCII -= 94;
+            }
+            textoCifrado.append(((char) letraCifradaASCII));
+        }
+        return textoCifrado.toString();
+    }
+}
+
+III:
+public class Threads1 implements Runnable {
+
+    public static int contadorMensagens = 0;
+    @Override
+    public void run() {
+        contadorMensagens++;
+        String mensagem = getMensagens(contadorMensagens);
+        if(mensagem != null){
+            System.out.println(mensagem);
+        }
+    }
+    
+    public String getMensagens(int posicao){
+        return ThreadMesagens.getMensagem(posicao);
+    }
+}
+
+
+public class Threads2 implements Runnable {
+
+    @Override
+    public void run() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+        System.out.println(dateFormat.format(new GregorianCalendar().getTime()));
+    }
+}
+
+public class Main03 {
+
+    public static int contadorTheards = 0;
+    private final Object LOCK = new Object();
+    
+    public static void main(String[] s) {  
+        try {
+            System.out.println("Iniciando Execução de Theads.");
+            new Main03().executa();
+        } catch (Throwable t) {  
+            t.printStackTrace();  
+        }  
+    }
+  
+    public void executa() {
+        synchronized (LOCK) {
+            while(true)
+                try {
+                    Threads1 ts1 = new Threads1();
+                    Thread t1 = new Thread(ts1);
+
+                    Threads2 ts2 = new Threads2();
+                    Thread t2 = new Thread(ts2);
+                    contadorTheards++;
+                    
+                    LOCK.wait(5000);
+                    System.out.println("Estado Thead 1" + t1.getState().name());
+                    System.out.println("Estado Thead 2" + t2.getState().name());
+                    LOCK.wait(5000);
+                    System.out.println("Estado Thead 1" + t1.getState().name());
+                    System.out.println("Estado Thead 2" + t2.getState().name());
+                    LOCK.wait(5000);
+                    System.out.println("Estado Thead 1" + t1.getState().name());
+                    System.out.println("Estado Thead 2" + t2.getState().name());
+                    LOCK.wait(5000);
+                    System.out.println("Estado Thead 1" + t1.getState().name());
+                    System.out.println("Estado Thead 2" + t2.getState().name());
+
+                    
+                    t1.start();
+                    if(contadorTheards == 10){
+                        t2.start();
+                        contadorTheards=0;
+                    }
+                } catch (InterruptedException ie) {  
+                    ie.printStackTrace();  
+                }
+        }
+    }
+}
+
+public class ThreadMesagens {
+    public static String getMensagem(Integer posicao){
+        return mensagens.get(posicao);
+    }
+    
+    private static final Map<Integer, String> mensagens = new HashMap<Integer, String>();
+    static {
+        mensagens.put(1, "Mensagem 1");
+        mensagens.put(2, "Mensagem 2");
+        mensagens.put(3, "Mensagem 3");
+        mensagens.put(4, "Mensagem 4");
+        mensagens.put(5, "Mensagem 5");
+        mensagens.put(6, "Mensagem 6");
+        mensagens.put(7, "Mensagem 7");
+        mensagens.put(8, "Mensagem 8");
+        mensagens.put(9, "Mensagem 9");
+        mensagens.put(10, "Mensagem 10");
+        mensagens.put(11, "Mensagem 11");
+        mensagens.put(12, "Mensagem 12");
+        mensagens.put(13, "Mensagem 13");
+        mensagens.put(14, "Mensagem 14");
+        mensagens.put(15, "Mensagem 15");
+        mensagens.put(16, "Mensagem 16");
+        mensagens.put(17, "Mensagem 17");
+        mensagens.put(18, "Mensagem 18");
+        mensagens.put(19, "Mensagem 19");
+        mensagens.put(20, "Mensagem 20");
+        mensagens.put(21, "Mensagem 21");
+        mensagens.put(22, "Mensagem 22");
+        mensagens.put(23, "Mensagem 23");
+        mensagens.put(24, "Mensagem 24");
+        mensagens.put(25, "Mensagem 25");
+        mensagens.put(26, "Mensagem 26");
+        mensagens.put(27, "Mensagem 27");
+        mensagens.put(28, "Mensagem 28");
+        mensagens.put(29, "Mensagem 29");
+        mensagens.put(30, "Mensagem 30");
+        mensagens.put(31, "Mensagem 31");
+        mensagens.put(32, "Mensagem 32");
+        mensagens.put(33, "Mensagem 33");
+        mensagens.put(34, "Mensagem 34");
+        mensagens.put(35, "Mensagem 35");
+        mensagens.put(36, "Mensagem 36");
+        mensagens.put(37, "Mensagem 37");
+        mensagens.put(38, "Mensagem 38");
+        mensagens.put(39, "Mensagem 39");
+        mensagens.put(40, "Mensagem 40");
+        mensagens.put(41, "Mensagem 41");
+        mensagens.put(42, "Mensagem 42");
+        mensagens.put(43, "Mensagem 43");
+        mensagens.put(44, "Mensagem 44");
+        mensagens.put(45, "Mensagem 45");
+        mensagens.put(46, "Mensagem 46");
+        mensagens.put(47, "Mensagem 47");
+        mensagens.put(48, "Mensagem 48");
+        mensagens.put(49, "Mensagem 49");
+        mensagens.put(50, "Mensagem 50");
+        mensagens.put(51, "Mensagem 51");
+        mensagens.put(52, "Mensagem 52");
+        mensagens.put(53, "Mensagem 53");
+        mensagens.put(54, "Mensagem 54");
+        mensagens.put(55, "Mensagem 55");
+        mensagens.put(56, "Mensagem 56");
+        mensagens.put(57, "Mensagem 57");
+        mensagens.put(58, "Mensagem 58");
+        mensagens.put(59, "Mensagem 59");
+        mensagens.put(60, "Mensagem 60");
+        mensagens.put(61, "Mensagem 61");
+        mensagens.put(62, "Mensagem 62");
+        mensagens.put(63, "Mensagem 63");
+        mensagens.put(64, "Mensagem 64");
+        mensagens.put(65, "Mensagem 65");
+        mensagens.put(66, "Mensagem 66");
+        mensagens.put(67, "Mensagem 67");
+        mensagens.put(68, "Mensagem 68");
+        mensagens.put(69, "Mensagem 69");
+        mensagens.put(70, "Mensagem 70");
+        mensagens.put(71, "Mensagem 71");
+        mensagens.put(72, "Mensagem 72");
+        mensagens.put(73, "Mensagem 73");
+        mensagens.put(74, "Mensagem 74");
+        mensagens.put(75, "Mensagem 75");
+        mensagens.put(76, "Mensagem 76");
+        mensagens.put(77, "Mensagem 77");
+        mensagens.put(78, "Mensagem 78");
+        mensagens.put(79, "Mensagem 79");
+        mensagens.put(80, "Mensagem 80");
+        mensagens.put(81, "Mensagem 81");
+        mensagens.put(82, "Mensagem 82");
+        mensagens.put(83, "Mensagem 83");
+        mensagens.put(84, "Mensagem 84");
+        mensagens.put(85, "Mensagem 85");
+        mensagens.put(86, "Mensagem 86");
+        mensagens.put(87, "Mensagem 87");
+        mensagens.put(88, "Mensagem 88");
+        mensagens.put(89, "Mensagem 89");
+        mensagens.put(90, "Mensagem 90");
+        mensagens.put(91, "Mensagem 91");
+        mensagens.put(92, "Mensagem 92");
+        mensagens.put(93, "Mensagem 93");
+        mensagens.put(94, "Mensagem 94");
+        mensagens.put(95, "Mensagem 95");
+        mensagens.put(96, "Mensagem 96");
+        mensagens.put(97, "Mensagem 97");
+        mensagens.put(98, "Mensagem 98");
+        mensagens.put(99, "Mensagem 99");
+        mensagens.put(100, "Mensagem 100");
+    }
+}
