@@ -2,7 +2,7 @@ package br.com.fundamentos.listaligada;
 
 import java.util.Scanner;
 
-public class App {
+public class App1 {
 
 	@SuppressWarnings("resource")
 	public static void main(String[] args) {
